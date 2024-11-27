@@ -5,7 +5,11 @@ const initialState = {
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: {},
+  activeSong: {
+    attributes: {
+      name: ""
+    }
+  },
   genreListId: '',
 };
 
