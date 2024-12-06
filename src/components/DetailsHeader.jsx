@@ -15,7 +15,7 @@ const DetailsHeader = ({ artistId, artistData, songData}) => {
           </p>
           {!artistId && (
             <Link to={`/artists/${songDetailsArtistId}`}>
-              <p className="text-base text-gray-400 mt-2">{songData?.resources?.artists[songDetailsArtistId]?.attributes?.name}</p>
+              <p className="text-base text-gray-400 mt-2 hover:underline">{songData?.resources?.artists[songDetailsArtistId]?.attributes?.name}</p>
             </Link>
           )}
           <p className="text-base text-gray-400 mt-2">
