@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from './pages';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -14,6 +15,12 @@ const App = () => {
     }, [navigate]);
     return null;
   };
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/users').then((res) => {
+      console.log(res.data);
+    });
+  })
 
   return (
     <div className="relative flex">
