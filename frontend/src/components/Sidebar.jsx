@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { RiCloseLine } from "react-icons/ri";
 import { HiOutlineMenu } from "react-icons/hi";
 import { logo } from "../assets";
 import { links } from "../assets/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/features/authSlice";
 
 const NavLinks = ({ handleClick }) => (
-  <div className="mt-10">
+  <div className="mt-6">
     {links.map((item) => (
       <NavLink 
       key={item.name}
@@ -23,6 +25,14 @@ const NavLinks = ({ handleClick }) => (
 
 const Sidebar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  }
 
   return (
     <>
@@ -30,7 +40,13 @@ const Sidebar = () => {
         <Link to="/">
           <img src={logo} alt="logo" className="w-full h-14 object-contain"/>
         </Link>
+        <div className="text-white text-base mt-8 text-center">
+          Welcome, <br/> <span className="text-white font-bold text-center">{user.name}</span>
+        </div>
         <NavLinks/>
+        <div className="text-white font-semibold text-base text-center mt-auto cursor-pointer hover:text-cyan-400" onClick={handleLogout}>
+          Log out
+        </div>
       </div>
 
       <div className="absolute md:hidden block top-6 right-3">

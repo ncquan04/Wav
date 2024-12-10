@@ -4,6 +4,7 @@ import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from './pages';
 import Login from './pages/Login';
 import { useEffect } from 'react';
+import Register from './pages/Register';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -15,7 +16,7 @@ const App = () => {
       <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
         {isLoggedIn && <Searchbar />}
 
-        <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+        <div className={`px-6 ${isLoggedIn ? 'h-[calc(100vh-72px)]' : ''} overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse`}>
           <div className="flex-1 h-fit pb-40">
             <Routes>
               {!isLoggedIn ? 
@@ -23,6 +24,7 @@ const App = () => {
                 <>
                   <Route path='*' element={<Navigate to="/login" replace />}/>
                   <Route path='/login' element={<Login />} />
+                  <Route path='/register' element={<Register />}/>
                 </>
               )
               :

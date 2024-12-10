@@ -3,6 +3,7 @@ const session = require('express-session');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
+const registerRoutes = require('./routes/registerRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
@@ -14,13 +15,15 @@ app.use(cors({
 }));
 
 app.use(session({
-    secret: 'abcdefg',
+    secret: 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {secure: false},
 }));
 
 app.use('/auth', authRoutes);
+app.use('/register', registerRoutes);
+
 app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
