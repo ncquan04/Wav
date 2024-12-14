@@ -6,7 +6,7 @@ import { Error, Loader, SongCard } from "../components";
 import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 
 const AroundYou = () => {
-    const [country, setCountry] = useState('');
+    const [country, setCountry] = useState(null);
     const [loading, setLoading] = useState(true);
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const { data, isFetching, error } = useGetSongsByCountryQuery(country);
@@ -20,7 +20,7 @@ const AroundYou = () => {
     }, []);
 
     if (isFetching && loading) return <Loader title="Loading songs around you"/>;
-    if (error && country) return <Error/>
+    if (error || !country) return <Error/>
 
     return (
         <div className="flex flex-col">

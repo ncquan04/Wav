@@ -38,15 +38,15 @@ const Sidebar = () => {
     <>
       <div className="md:flex hidden flex-col w-240 py-10 px-4 bg-[#191624]">
         <Link to="/">
-          <img src={logo} alt="logo" className="w-full h-14 object-contain"/>
+          <img src={logo} alt="logo" className="w-full h-24 object-contain"/>
         </Link>
-        <div className="text-white text-base mt-8 text-center">
+        <div className="text-white text-base mt-8 mb-4 text-center">
           Welcome, <br/> <span className="text-white font-bold text-center">{user.name}</span>
         </div>
-        <NavLinks/>
-        <div className="text-white font-semibold text-base text-center mt-auto cursor-pointer hover:text-cyan-400" onClick={handleLogout}>
+        <div className="text-white font-semibold text-base text-center cursor-pointer hover:text-cyan-400" onClick={handleLogout}>
           Log out
         </div>
+        <NavLinks/>
       </div>
 
       <div className="absolute md:hidden block top-6 right-3">

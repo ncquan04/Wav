@@ -31,7 +31,7 @@ const Login = () => {
             <img src={logo} alt="logo" className="w-40 h-40 object-contain mb-6" />
             <div className="flex flex-col bg-white rounded-lg shadow-lg p-4 border">
                 <form className="p-8 rounded-lg shadow-lg">
-                    <h2 className="font-bold text-black text-3xl mb-6">Welcome to Lyriks</h2>
+                    <h2 className="font-bold text-black text-3xl mb-6">Welcome to Wav.</h2>
                     {error && <p className="text-red-500 text-sm mb-6">{error}</p>}
                     <input
                         type="text"

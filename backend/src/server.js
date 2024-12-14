@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const registerRoutes = require('./routes/registerRoutes');
+const playlistRoutes = require('./routes/playlistsRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(session({
 
 app.use('/auth', authRoutes);
 app.use('/register', registerRoutes);
+app.use('/playlists', playlistRoutes);
 
 app.use(errorHandler);
 
