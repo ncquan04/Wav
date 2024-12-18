@@ -9,7 +9,6 @@ const SongDetails = () => {
     const { songid } = useParams();
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const { data: songData, isFetching: isFetchingSongDetails} = useGetSongDetailsQuery({ songid });
-    const { data, isFetching: isFetchingRelatedSongs, error } = useGetSongRelatedQuery({ songid });
     const lyricsKey = songData?.resources?.lyrics ? Object.keys(songData.resources.lyrics)[0] : null;
 
     const handlePauseClick = () => {
@@ -35,14 +34,6 @@ const SongDetails = () => {
                     )) : <p className="text-gray-400 text-base my-1">No lyrics found</p>} 
                 </div>
             </div>
-            <RelatedSongs
-                data={data}
-                isPlaying={isPlaying}
-                activeSong={activeSong}
-                handlePauseClick={handlePauseClick}
-                handlePlayClick={handlePlayClick}
-                error={error}
-            />
         </div>
     )
 };

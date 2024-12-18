@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,6 +7,7 @@ import { FreeMode } from "swiper";
 import PlayPause from "./PlayPause"; 
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import artistData from "../assets/data.json";
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -40,6 +41,10 @@ const TopPlay = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data } = useGetTopChartsQuery();
   const divRef = useRef(null);
+
+  useEffect(() => {
+    divRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -105,7 +110,7 @@ const TopPlay = () => {
               className="shadow-lg rounded-full animate-slideright"
             >
               <Link to={`/artists/${song.relationships.artists.data[0].id}`}>
-                <img src="" alt="name" className="rounded-full w-full object-cover"/>
+                <img src={artistData[i].url} alt="name" className="rounded-full w-full object-cover"/>
               </Link>
             </SwiperSlide>
           ))}

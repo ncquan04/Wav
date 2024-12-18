@@ -14,3 +14,20 @@ exports.deleteById = async (playlistId, userId) => {
     const [result] = await db.query('DELETE FROM playlists WHERE id = ? AND user_id = ?', [playlistId, userId]);
     return result.affectedRows > 0;
 }
+
+exports.findSongsByPlaylistId = async (playlistId) => {
+    const [rows] = await db.query('SELECT song_id FROM playlist_songs WHERE playlist_id = ?', [playlistId]);
+    return rows.map(row => row.song_id);
+}
+
+exports.addSongToPlaylist = async (playlistId, songId) => {
+    try {
+        await db.query('INSERT INTO playlist_songs (playlist_id, song_id) VALUES (?, ?)', [playlistId, songId]);
+    } catch (error) {
+        if (error.code === '1062') {
+            return {message: 'Song already exists in playlist'};
+        }
+        throw new Error('Song already exists in playlist');
+    }
+    return 'Song added successfully';
+}

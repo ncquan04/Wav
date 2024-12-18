@@ -5,6 +5,7 @@ import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, To
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Playlists from './pages/Playlists';
+import PlaylistDetails from './pages/PlaylistDetails';
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -36,6 +37,7 @@ const App = () => {
                   <Route path="/top-charts" element={<TopCharts />} />
                   <Route path="/around-you" element={<AroundYou />} />
                   <Route path="/playlists" element={<Playlists />} />
+                  <Route path="/playlists/:playlistId" element={<PlaylistDetails />} />
                   <Route path="/artists/:id" element={<ArtistDetails />} />
                   <Route path="/songs/:songid" element={<SongDetails />} />
                   <Route path="/search/:searchTerm" element={<Search />} />

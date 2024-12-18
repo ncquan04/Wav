@@ -3,7 +3,7 @@ import React from 'react';
 const Track = ({ isPlaying, isActive, activeSong }) => (
   <div className="flex-1 flex items-center justify-start">
     <div className={`${isPlaying && isActive ? 'animate-[spin_5s_linear_infinite]' : ''} hidden sm:block h-16 w-16 mr-4`}>
-      <img src={activeSong?.attributes?.artwork?.url ? activeSong?.attributes?.artwork?.url : activeSong?.images?.coverart} alt="cover art" className="rounded-full" />
+      <img src={activeSong?.attributes?.artwork?.url ? activeSong?.attributes?.artwork?.url.replace('{w}', '400').replace('{h}', '400') : activeSong?.images?.coverart} alt="cover art" className="rounded-full" />
     </div>
     <div className="w-[50%]">
       <p className="truncate text-white font-bold text-lg">

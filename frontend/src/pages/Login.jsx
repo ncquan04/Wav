@@ -20,7 +20,7 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:5000/auth/login', form);
             dispatch(login(response.data.user));
-            navigate('/discover');
+            navigate('/playlists');
         } catch (err) {
             setError(err.response?.data?.message || 'Incorrect username or password');
         }
