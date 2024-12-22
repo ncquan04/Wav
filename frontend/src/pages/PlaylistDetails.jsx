@@ -47,7 +47,7 @@ const PlaylistDetails = () => {
         <div className="flex flex-row flex-wrap gap-8">
             {songs.map((song, i) => (
                 <SongCard
-                    key={song.id}
+                    key={i}
                     song={song.data[0]}
                     isPlaying={isPlaying}
                     activeSong={activeSong}
