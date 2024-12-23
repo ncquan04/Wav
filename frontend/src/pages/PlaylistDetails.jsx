@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { SongCard } from "../components";
+import { Loader, SongCard } from "../components";
 import { useSelector } from "react-redux";
 
 const PlaylistDetails = () => {
@@ -9,39 +9,53 @@ const PlaylistDetails = () => {
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const [songIds, setSongIds] = useState([]);
     const [songs, setSongs] = useState([]);
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
         const fetchSongs = async () => {
             try {
+                setLoading(true);
                 const response = await axios.get(`http://localhost:5000/playlists/songs/${playlistId}`);
                 const fetchedSongIds = response.data.songIds;
                 setSongIds(fetchedSongIds);
-                fetchedSongIds.forEach(async (songId, index) => {
-                    try {
-                        const options = {
-                            method: 'GET',
-                            url: 'https://shazam.p.rapidapi.com/songs/v2/get-details',
-                            params: {
-                                id: songId,
-                                l: 'en-US'
-                            },
-                            headers: {
-                                'x-rapidapi-key': '54c8faa2fbmsh08a94c147fd669ep18519djsn17d5685dbbe3',
-                                'x-rapidapi-host': 'shazam.p.rapidapi.com'
-                            }
-                        };
-                        const response = await axios.request(options);
-                        setSongs((prev) => [...prev, response.data]);
-                    } catch (error) {
-                        console.log(error);
-                    }
+                const requests = fetchedSongIds.map((songId) => {
+                    return axios.get('https://shazam.p.rapidapi.com/songs/v2/get-details', {
+                        params: { id: songId, locale: 'en-US' },
+                        headers: {
+                            'x-rapidapi-key': import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY,
+                            'x-rapidapi-host': 'shazam.p.rapidapi.com'
+                        }
+                    })
                 });
+                const responses = await Promise.all(requests);
+                setSongs(responses.map(response => response.data));
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchSongs();
     }, [])
+
+    const handleDeleteFromPlaylist = async (songId) => {
+        try {
+            await axios.post('http://localhost:5000/playlists/remove-song', { playlistId, songId });
+            const updatedSongs = songs.filter((song) => song.data[0].id !== songId);
+            setSongs(updatedSongs);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    if (loading) {
+        return <Loader title="Loading playlist songs..." />
+    }
+
+    if (songs.length === 0) {
+        return (
+            <div className="text-center text-white text-2xl font-bold mt-4">You haven't add any songs to this playlist</div>
+        )
+    }
     
     return (
         <div className="flex flex-row flex-wrap gap-8">
@@ -53,6 +67,8 @@ const PlaylistDetails = () => {
                     activeSong={activeSong}
                     data={songs}
                     i={i}
+                    isPlaylistSong={true}
+                    handleDeleteFromPlaylist={() => handleDeleteFromPlaylist(song.data[0].id)}
                 />
             ))}
         </div>

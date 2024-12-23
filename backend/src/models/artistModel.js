@@ -13,7 +13,7 @@ exports.addArtist = async (userId, artistId) => {
 };
 
 exports.deleteArtist = async (artistId, userId) => {
-    const [result] = await db.query('DELETE FROM artists WHERE id = ? AND user_id = ?', [artistId, userId]);
+    const [result] = await db.query('DELETE FROM artists WHERE artist_id = ? AND user_id = ?', [artistId, userId]);
     return result.affectedRows > 0;
 }
 

@@ -39,8 +39,14 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartsQuery();
+  const { data, error, refetch } = useGetTopChartsQuery();
   const divRef = useRef(null);
+
+  if (error) {
+    setTimeout(() => {
+      refetch();
+    }, 1000);
+  }
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });

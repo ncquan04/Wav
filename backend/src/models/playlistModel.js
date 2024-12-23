@@ -31,3 +31,8 @@ exports.addSongToPlaylist = async (playlistId, songId) => {
     }
     return 'Song added successfully';
 }
+
+exports.removeSongFromPlaylist = async (playlistId, songId) => {
+    const [result] = await db.query('DELETE FROM playlist_songs WHERE playlist_id = ? AND song_id = ?', [playlistId, songId]);
+    return result.affectedRows > 0;
+};

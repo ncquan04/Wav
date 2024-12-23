@@ -28,3 +28,10 @@ exports.addSongToPlaylist = async (playlistId, songId) => {
         throw new Error('Song already exists in playlist');
     }
 }
+
+exports.removeSongFromPlaylist = async (playlistId, songId) => {
+    const isRemoved = await playlistModel.removeSongFromPlaylist(playlistId, songId);
+    if (!isRemoved) {
+        throw new Error('Song not found in playlist');
+    }
+}

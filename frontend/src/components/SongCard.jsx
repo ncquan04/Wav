@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { HiOutlinePlusCircle } from "react-icons/hi";
+import { HiOutlinePlusCircle, HiTrash } from "react-icons/hi";
 import { useState } from "react";
 import AddToPlaylistModal from "./AddToPlaylistModal";
 
-const SongCard = ( {song, isPlaying, activeSong, i, data} ) => {
+const SongCard = ( {song, isPlaying, activeSong, i, data, isPlaylistSong, handleDeleteFromPlaylist} ) => {
   const dispatch = useDispatch();
   const [isAddingToPlaylist, setIsAddingToPlaylist] = useState(false);
 
@@ -51,7 +51,8 @@ const SongCard = ( {song, isPlaying, activeSong, i, data} ) => {
                 </Link>
               </p>
             </div>
-            <HiOutlinePlusCircle className="mt-auto text-2xl text-gray-500 hover:text-white cursor-pointer" onClick={handleAddClick} />
+            {!isPlaylistSong && <HiOutlinePlusCircle className="mt-auto text-2xl text-gray-500 hover:text-white cursor-pointer" onClick={handleAddClick} />}
+            {isPlaylistSong && <HiTrash className="mt-auto text-2xl text-gray-500 hover:text-white cursor-pointer" onClick={handleDeleteFromPlaylist}/>}
           </div>
     </>}
   </div>
