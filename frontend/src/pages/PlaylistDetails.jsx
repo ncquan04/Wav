@@ -11,6 +11,8 @@ const PlaylistDetails = () => {
     const [songs, setSongs] = useState([]);
     const [ loading, setLoading ] = useState(true);
 
+    console.log(songs);
+
     useEffect(() => {
         const fetchSongs = async () => {
             try {
@@ -28,7 +30,10 @@ const PlaylistDetails = () => {
                     })
                 });
                 const responses = await Promise.all(requests);
-                setSongs(responses.map(response => response.data));
+                responses.map((response) => {
+                    console.log(response.data);
+                    setSongs((prevSongs) => [...prevSongs, response.data.data[0]]);
+                } )
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -62,7 +67,7 @@ const PlaylistDetails = () => {
             {songs.map((song, i) => (
                 <SongCard
                     key={i}
-                    song={song.data[0]}
+                    song={song}
                     isPlaying={isPlaying}
                     activeSong={activeSong}
                     data={songs}

@@ -5,8 +5,6 @@ const DetailsHeader = ({ artistId, artistData, songData}) => {
   const shazamSongId = songData?.resources['shazam-songs'] ? Object.keys(songData.resources['shazam-songs'])[0] : null;
   const songDetailsArtistId = songData?.resources?.artists ? Object.keys(songData.resources.artists)[0] : null;
 
-  console.log(songData);
-
   return (
     <div className="relative w-full flex flex-col">
       <div className="w-full bg-gradient-to-l from-transparent to-black sm:h-48 h-28"/>
@@ -27,10 +25,10 @@ const DetailsHeader = ({ artistId, artistData, songData}) => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col items-center mr-10">
+        <div className="flex flex-col items-center">
           <div className="text-white text-2xl font-bold mb-4">See more at</div>
           <a href={artistId ? `https://shazam.com/artist/${artistData.attributes.name}/${artistData.id}` : songData?.resources['shazam-songs'][shazamSongId]?.attributes?.share.href} target="_blank" rel="noreferrer">
-            <div className="w-60 h-28 rounded-full overflow-hidden" style={{backgroundImage: `url(${shazam_logo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}/>
+            <div className="w-60 h-24 rounded-full overflow-hidden" style={{backgroundImage: `url(${shazam_logo})`, backgroundSize: 'cover', backgroundPosition: 'center'}}/>
           </a>
         </div>
       </div>

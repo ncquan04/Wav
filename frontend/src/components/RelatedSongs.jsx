@@ -1,7 +1,9 @@
 import SongBar from './SongBar';
 import { Error } from '../components'
 
-const RelatedSongs = ({data, isPlaying, activeSong, handlePauseClick, handlePlayClick, artistId, error}) => {
+const RelatedSongs = ({data, isPlaying, activeSong, artistId, error}) => {
+  console.log(data);
+
   if (error) {
     return (
       <div className='flex flex-col'>
@@ -18,14 +20,13 @@ const RelatedSongs = ({data, isPlaying, activeSong, handlePauseClick, handlePlay
       <div className='mt-4 w-full flex flex-col'>
         {data?.map((song, i) => (
           <SongBar
-            key={`${song.key}-${artistId}`}
+            key={i}
             song={song}
             i={i}
             artistId={artistId}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            handlePauseClick={handlePauseClick}
-            handlePlayClick={handlePlayClick}
+            data={data}
           />
         ))}
       </div>
