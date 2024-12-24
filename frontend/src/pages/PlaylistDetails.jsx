@@ -73,7 +73,7 @@ const PlaylistDetails = () => {
                     data={songs}
                     i={i}
                     isPlaylistSong={true}
-                    handleDeleteFromPlaylist={() => handleDeleteFromPlaylist(song.data[0].id)}
+                    handleDeleteFromPlaylist={() => handleDeleteFromPlaylist(song.id)}
                 />
             ))}
         </div>

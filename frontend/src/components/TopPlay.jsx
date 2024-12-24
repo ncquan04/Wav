@@ -45,7 +45,7 @@ const TopPlay = () => {
   if (error) {
     setTimeout(() => {
       refetch();
-    }, 1000);
+    }, 3000);
   }
 
   useEffect(() => {
