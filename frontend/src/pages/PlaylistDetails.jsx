@@ -24,7 +24,7 @@ const PlaylistDetails = () => {
                     return axios.get('https://shazam.p.rapidapi.com/songs/v2/get-details', {
                         params: { id: songId, locale: 'en-US' },
                         headers: {
-                            'x-rapidapi-key': import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY,
+                            'x-rapidapi-key': 'ebc1f87bd7msh5a264a4fc705584p14dae2jsn53f1c632fed3',
                             'x-rapidapi-host': 'shazam.p.rapidapi.com'
                         }
                     })
@@ -45,7 +45,7 @@ const PlaylistDetails = () => {
     const handleDeleteFromPlaylist = async (songId) => {
         try {
             await axios.post('http://localhost:5000/playlists/remove-song', { playlistId, songId });
-            const updatedSongs = songs.filter((song) => song.data[0].id !== songId);
+            const updatedSongs = songs.filter((song) => song.id !== songId);
             setSongs(updatedSongs);
         } catch (error) {
             console.log(error);

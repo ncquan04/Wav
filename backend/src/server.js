@@ -19,8 +19,12 @@ app.use(cors({
 app.use(session({
     secret: 'secret',
     resave: false,
-    saveUninitialized: false,
-    cookie: {secure: false},
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,  // Đảm bảo cookie chỉ có thể truy cập từ server
+        secure: process.env.NODE_ENV === 'production', // Chỉ sử dụng https trong môi trường production
+        maxAge: 1000 * 60 * 60 * 24 // Thời gian hết hạn cookie (ví dụ: 1 ngày)
+    }
 }));
 
 app.use('/auth', authRoutes);

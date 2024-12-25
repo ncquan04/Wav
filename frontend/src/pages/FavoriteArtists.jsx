@@ -25,7 +25,7 @@ const FavoriteArtists = () => {
                         return axios.get(`https://shazam.p.rapidapi.com/artists/get-details`, {
                             params: { id, l: 'en-US' },
                             headers: {
-                                'x-rapidapi-key': import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY,
+                                'x-rapidapi-key': 'ebc1f87bd7msh5a264a4fc705584p14dae2jsn53f1c632fed3',
                                 'x-rapidapi-host': 'shazam.p.rapidapi.com'
                             }
                         });
