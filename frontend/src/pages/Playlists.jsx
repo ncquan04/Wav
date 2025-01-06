@@ -64,7 +64,7 @@ const Playlists = () => {
 
     return (
         <div className="flex flex-col" onClick={handleCancel}>
-            <div className="flex flex-wrap gap-4 mt-10" onClick={(e) => e.stopPropagation()}>
+            <div className="flex flex-wrap sm:justify-start justify-center gap-4 mt-10" onClick={(e) => e.stopPropagation()}>
                 {playlists.map((playlist) => (
                     <PlaylistCard
                         key={playlist.id}

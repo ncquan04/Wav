@@ -60,7 +60,7 @@ const PlaylistDetails = () => {
     }
     
     return (
-        <div className="flex flex-row flex-wrap gap-8">
+        <div className="flex flex-row flex-wrap sm:justify-start justify-center gap-8">
             {songs.map((song, i) => (
                 <SongCard
                     key={i}
