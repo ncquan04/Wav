@@ -11,8 +11,6 @@ const PlaylistDetails = () => {
     const [songs, setSongs] = useState([]);
     const [ loading, setLoading ] = useState(true);
 
-    console.log(songs);
-
     useEffect(() => {
         const fetchSongs = async () => {
             try {
@@ -31,7 +29,6 @@ const PlaylistDetails = () => {
                 });
                 const responses = await Promise.all(requests);
                 responses.map((response) => {
-                    console.log(response.data);
                     setSongs((prevSongs) => [...prevSongs, response.data.data[0]]);
                 } )
                 setLoading(false);

@@ -71,6 +71,7 @@ const FavoriteArtists = () => {
         <div className="flex flex-row flex-wrap gap-8">
             {artistDetails.map((artistDetail, index) => (
                 <div 
+                    key={index}
                     className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer" 
                 >
                     <Link to={`/artists/${artistDetail.data[0].id}`}>

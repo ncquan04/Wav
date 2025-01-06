@@ -6,8 +6,6 @@ import { useDispatch } from 'react-redux';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 
 const SongBar = ({ song, data, i, artistId, isPlaying, activeSong }) => {
-  console.log(data);
-
   const dispatch = useDispatch();
 
   const handlePauseClick = () => {
