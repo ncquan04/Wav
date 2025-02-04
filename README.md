@@ -23,9 +23,14 @@ Check out the demo video of Wav Music Player [here](https://www.youtube.com/watc
    ```sh
    git clone https://github.com/ncquan04/Wav.git
    ```
+2. This appplication uses Shazam Core API from RapidAPI and ipify, so remember to change your keys in the .env files:
+   ```sh
+   git clone https://github.com/ncquan04/Wav.git
+   ```
 2. Navigate to the backend:
    ```sh
-   cd backend
+   VITE_SHAZAM_CORE_RAPID_API_KEY='YOUR_RAPIDAPI_KEY'
+   VITE_GEO_API_KEY='YOUR_IPIFY_KEY'
    ```
 3. Install dependencies:
    ```sh
