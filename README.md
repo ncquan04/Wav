@@ -16,7 +16,7 @@ Wav is a modern and minimalist music streaming application designed to provide a
 - **Database**: MySQL
 
 ## Demo
-Check out the demo of Wav: [Watch the demo video](https://github.com/user-attachments/assets/d48ba846-cb2c-4e32-a107-9e6d3e185216)
+Check out the demo of Wav: [Watch the demo video](https://www.youtube.com/watch?v=7eFNwasqKO8)
 
 ## Installation
 1. Clone the repository:
@@ -55,5 +55,5 @@ The frontend of this project is referenced from @adrianhajdin, check out his tut
 The backend was built by myself.
 
 ## Contact
-For any inquiries, reach out to [my email](chiquan02122004@gmail.com).
+For any inquiries, reach out to [my GitHub profile](https://github.com/ncquan04).
 
