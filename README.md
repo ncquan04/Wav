@@ -16,6 +16,7 @@ Wav is a modern and minimalist music streaming application designed to provide a
 - **Database**: MySQL
 
 ## Demo
+Check out the demo video of Wav Music Player [here](https://www.youtube.com/watch?v=7eFNwasqKO8):
 [![Watch the demo video](https://img.youtube.com/vi/7eFNwasqKO8/0.jpg)](https://www.youtube.com/watch?v=7eFNwasqKO8)
 
 ## Installation
